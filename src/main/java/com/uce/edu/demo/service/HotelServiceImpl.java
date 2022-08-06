@@ -33,13 +33,13 @@ public class HotelServiceImpl implements IHotelService{
 	@Override
 	public List<Hotel> buscarHotelWhere(String tipoHabitacion) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.hotelRepo.buscarHotelWhere(tipoHabitacion);
 	}
 
 	@Override
 	public List<Hotel> buscarHotelFetch(String tipoHabitacion) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.hotelRepo.buscarHotelFetch(tipoHabitacion);
 	}
 
 	@Override
