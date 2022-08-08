@@ -1,5 +1,6 @@
 package com.uce.edu.demo;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -10,10 +11,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.uce.edu.demo.repository.modelo.Factura;
-import com.uce.edu.demo.repository.modelo.Habitacion;
-import com.uce.edu.demo.repository.modelo.Hotel;
 import com.uce.edu.demo.service.IFacturaService;
-import com.uce.edu.demo.service.IHotelService;
 
 @SpringBootApplication
 public class ProyectoU3AaApplication implements CommandLineRunner {
@@ -29,20 +27,16 @@ public class ProyectoU3AaApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		//Join
-		List<Factura>listaFacturas=this.facturaService.buscarFacturaInnerJoin(2);
+		List<Factura>listaFacturas=this.facturaService.buscarFacturaFetch(new BigDecimal(11));
 		for(Factura f: listaFacturas) {
 			LOG.info(f);
 		}
 		//Outer Left
-		List<Factura>listaFacturas2=this.facturaService.buscarFacturaOuterJoinLeft(2);
+		List<Factura>listaFacturas2=this.facturaService.buscarFacturaWhere(new BigDecimal(11));
 		for(Factura f: listaFacturas2) {
 			LOG.info(f);
 		}
-		//Outher Right
-		List<Factura>listaFacturas3=this.facturaService.buscarFacturaOuterJoinRigth(2);
-		for(Factura f: listaFacturas3) {
-			LOG.info(f);
-		}
+		
 		
 
 		
