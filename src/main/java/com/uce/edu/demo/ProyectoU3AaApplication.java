@@ -9,14 +9,16 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.uce.edu.demo.repository.modelo.Factura;
 import com.uce.edu.demo.repository.modelo.Habitacion;
 import com.uce.edu.demo.repository.modelo.Hotel;
+import com.uce.edu.demo.service.IFacturaService;
 import com.uce.edu.demo.service.IHotelService;
 
 @SpringBootApplication
 public class ProyectoU3AaApplication implements CommandLineRunner {
 	@Autowired
-	private IHotelService hotelService;
+	private IFacturaService facturaService;
 	private static Logger LOG = LogManager.getLogger(ProyectoU3AaApplication.class.getName());
 
 	public static void main(String[] args) {
@@ -26,50 +28,23 @@ public class ProyectoU3AaApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-//		List<Hotel>listaHoteles=this.hotelService.buscarHotelInnerJoin("Familiar");
-//		for (Hotel h : listaHoteles) {
-//			LOG.info("Hotel Familiar: " + h.getNombre()+""+h.getDireccion());
-//		}
-//		listaHoteles=this.hotelService.buscarHotelOuterJoinLeft("Familiar");
-//		for (Hotel h : listaHoteles) {
-//			LOG.info("Hotel Familiar: " + h.getNombre()+""+h.getDireccion());
-//		}
-//		listaHoteles=this.hotelService.buscarHotelOuterJoinRigth("Familiar");
-//		for (Hotel h : listaHoteles) {
-//			LOG.info("Hotel Familiar: " + h.getNombre()+""+h.getDireccion());
-//		}
-//		
-//		
-//		
-//		List<Hotel>listaHoteles2=this.hotelService.buscarHotelInnerJoin();
-//		for (Hotel h : listaHoteles2) {
-//			LOG.info("Hotel : " + h.getNombre()+""+h.getDireccion());
-//		}
-//		listaHoteles2=this.hotelService.buscarHotelOuterJoinLeft();
-//		for (Hotel h : listaHoteles2) {
-//			LOG.info("Hotel : " + h.getNombre()+""+h.getDireccion());
-//		}
-		//lazy
-		List<Hotel> listaHoteles2 = this.hotelService.buscarHotelInnerJoin("Familiar");
-		for (Hotel h : listaHoteles2) {
-
-			LOG.info("Hotel2: " + h.getNombre() + h.getDireccion());
-			for(Habitacion ha : h.getHabitaciones()) {
-				LOG.info("Habitaciones: " + ha);
-			}
+		//Join
+		List<Factura>listaFacturas=this.facturaService.buscarFacturaInnerJoin(2);
+		for(Factura f: listaFacturas) {
+			LOG.info(f);
 		}
-//where
-		List<Hotel> listaHoteles = this.hotelService.buscarHotelWhere("Familiar");
+		//Outer Left
+		List<Factura>listaFacturas2=this.facturaService.buscarFacturaOuterJoinLeft(2);
+		for(Factura f: listaFacturas2) {
+			LOG.info(f);
+		}
+		//Outher Right
+		List<Factura>listaFacturas3=this.facturaService.buscarFacturaOuterJoinRigth(2);
+		for(Factura f: listaFacturas3) {
+			LOG.info(f);
+		}
+		
 
-		for (Hotel h : listaHoteles) {
-			LOG.info("Hotel Familiar: " + h.getNombre() + "" + h.getDireccion());
-	}
-	//fetch
-		List<Hotel> listaHoteles3 = this.hotelService.buscarHotelFetch("Familiar");
-
-		for (Hotel h : listaHoteles3) {
-			LOG.info("Hotel Familiar: " + h.getNombre() + "" + h.getDireccion());
-	}
 		
 	}
 

@@ -59,6 +59,10 @@ private LocalDateTime fecha;
 	public void setDetalles(List<Detalle> detalles) {
 		this.detalles = detalles;
 	}
+	@Override
+	public String toString() {
+		return "Factura [id=" + id + ", numero=" + numero + ", fecha=" + fecha + ", detalles=" + detalles + "]";
+	}
 	
 	
 	
