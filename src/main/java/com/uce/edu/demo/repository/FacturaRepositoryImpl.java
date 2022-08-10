@@ -7,9 +7,14 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
+import javax.transaction.Transactional.TxType;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.reactive.TransactionSynchronizationManager;
 
+import com.uce.edu.demo.ProyectoU3AaApplication;
 import com.uce.edu.demo.repository.modelo.Factura;
 
 @Repository
@@ -17,6 +22,7 @@ import com.uce.edu.demo.repository.modelo.Factura;
 public class FacturaRepositoryImpl implements IFacturaRepository {
 	@PersistenceContext
 	private EntityManager entityManager;
+	private static Logger LOG = LogManager.getLogger(ProyectoU3AaApplication.class.getName());
 
 	@Override
 	public List<Factura> buscarFacturaInnerJoin(Integer cantidad) {
@@ -55,8 +61,10 @@ public class FacturaRepositoryImpl implements IFacturaRepository {
 	}
 
 	@Override
+	@Transactional(value=TxType.MANDATORY)
 	public List<Factura> buscarFacturaFetch(BigDecimal subtotal) {
 		// TODO Auto-generated method stub
+		
 		TypedQuery<Factura> myQuery = this.entityManager.createQuery(
 				"Select f FROM Factura f  JOIN FETCH f.detalles de WHERE de.subtotal=:subtotal", Factura.class);
 		myQuery.setParameter("subtotal", subtotal);
