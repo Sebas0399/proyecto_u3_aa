@@ -3,6 +3,7 @@ package com.uce.edu.demo.service;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import javax.management.RuntimeErrorException;
 import javax.transaction.Transactional;
 import javax.transaction.Transactional.TxType;
 
@@ -25,6 +26,7 @@ public class TransferenciaServiceImpl implements ITransferenciaService {
 		// TODO Auto-generated method stub
 		CuentaBancaria ctaOrigen=this.cuentaRepo.buscar(numeroCtaOrigen);
 		BigDecimal saldoOrigen=ctaOrigen.getSaldo();
+		
 		BigDecimal saldoFinal=saldoOrigen.min(monto);
 		ctaOrigen.setSaldo(saldoFinal);
 		this.cuentaRepo.acutalizar(ctaOrigen);
@@ -40,6 +42,13 @@ public class TransferenciaServiceImpl implements ITransferenciaService {
 		t.setMonto(monto);
 		
 		this.transferenciaRepo.insertar(t);
+//		if(ctaOrigen.getTipo().equals("A")) {
+//			throw new RuntimeException();
+//		}
+		if(monto.compareTo(saldoOrigen)>0) {
+			throw new RuntimeException();
+
+		}
 	}
 
 }

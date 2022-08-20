@@ -10,14 +10,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.demo.repository.modelo.Factura;
-import com.uce.edu.demo.service.IFacturaService;
 import com.uce.edu.demo.service.ITransferenciaService;
 
 @SpringBootApplication
 public class ProyectoU3AaApplication implements CommandLineRunner {
-	@Autowired
-	private IFacturaService facturaService;
 	@Autowired
 	private ITransferenciaService transferenciaService;
 	private static Logger LOG = LogManager.getLogger(ProyectoU3AaApplication.class.getName());
@@ -42,7 +38,7 @@ public class ProyectoU3AaApplication implements CommandLineRunner {
 //		
 //		
 
-		this.transferenciaService.realizarTransferencia("12345", "45679", new BigDecimal(20));
+		this.transferenciaService.realizarTransferencia("ASD-120015", "ASD-120016", new BigDecimal(1));
 	}
 
 }

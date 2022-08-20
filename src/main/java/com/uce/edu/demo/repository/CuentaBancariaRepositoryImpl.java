@@ -22,10 +22,11 @@ public class CuentaBancariaRepositoryImpl implements ICuentaBancariaRepository{
 	private static Logger LOG = LogManager.getLogger(CuentaBancariaRepositoryImpl.class.getName());
 
 	@Override
-	@Transactional(value = TxType.MANDATORY)
+	@Transactional(value = TxType.REQUIRES_NEW)
 	public void acutalizar(CuentaBancaria cuenta) {
 		// TODO Auto-generated method stub
 		this.entityManager.merge(cuenta);
+		//throw new RuntimeException();
 	}
 	@Override
 	@Transactional(value = TxType.NOT_SUPPORTED)
