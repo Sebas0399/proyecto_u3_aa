@@ -26,10 +26,10 @@ private IGestorFacturaService facturaService;
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-	List<String> codigoBarras=new ArrayList<>();
-	codigoBarras.add("A135");
-	codigoBarras.add("A597");
-	this.facturaService.generarFactura("1725776650", "1", codigoBarras);
+		List<String> codBarras=new ArrayList<>();
+		codBarras.add("PC-145");
+		codBarras.add("QW-587");
+		this.facturaService.generarFactura("1725776650", "1", codBarras);
 		}
 
 }
