@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uce.edu.demo.repository.IClienteRepository;
+import com.uce.edu.demo.repository.IDetalleRepository;
 import com.uce.edu.demo.repository.IFacturaRepository;
 import com.uce.edu.demo.repository.IProductoRepository;
 import com.uce.edu.demo.repository.modelo.Cliente;
@@ -29,6 +30,9 @@ public class FacturaServiceImpl implements IFacturaService{
 	
 	@Autowired
 	private IProductoRepository productoRepo;
+	
+	@Autowired
+	private IDetalleRepository detalleRepo;
 	@Override
 	public BigDecimal calcularTotal(Integer id) {
 		// TODO Auto-generated method stub
@@ -85,8 +89,10 @@ public class FacturaServiceImpl implements IFacturaService{
 			detalle.setProducto(p);
 			detalle.setFactura(factura);
 			detalle.setSubtotal(p.getPrecio().multiply(new BigDecimal(detalle.getCantidad())));
+			this.detalleRepo.insertar(detalle);
 			detalles.add(detalle);
 		}
+		factura.setTotal(total);
 		factura.setDetalles(detalles);
 		return total;
 	}
