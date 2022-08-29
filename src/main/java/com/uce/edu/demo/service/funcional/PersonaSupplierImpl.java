@@ -1,12 +1,12 @@
 package com.uce.edu.demo.service.funcional;
 
-public class PersonaSupplierImpl implements IPersonaSupplier<String>{
+public class PersonaSupplierImpl implements IPersonaSupplier<Integer>{
 
 
 	@Override
-	public String getNombre() {
+	public Integer getEdad() {
 		// TODO Auto-generated method stub
-		return "Antony";
+		return 23;
 	}
 
 }
