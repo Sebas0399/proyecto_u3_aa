@@ -29,7 +29,7 @@ public class PCCajeroParalelo extends Thread {
 
 
 
-		System.out.println("termino: "+cajeroParalelo.getNombre()+" en "+tiempoTrans+" seg");
+		//System.out.println("termino: "+cajero.getNombre()+" en "+tiempoTrans+" seg");
 	}
 
 	public void atenderCliente(String cliente) {
